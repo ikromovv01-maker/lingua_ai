@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>Lingua AI — IELTS & CEFR Preparation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+  <section id="authScreen" class="auth-screen auth-dialog hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-art">
+      <div class="brand brand-light"><span class="brand-mark">L</span> lingua<span>AI</span></div>
+      <div class="art-copy">
+        <span class="eyebrow">YOUR ENGLISH, YOUR FUTURE</span>
+        <h1>Small steps.<br><em>Big results.</em></h1>
+        <p>IELTS va CEFR maqsadlaringizga aqlli mashqlar va shaxsiy AI yordamchi bilan yaqinlashing.</p>
+        <div class="art-stats"><div><b>4</b><span>Practice skills</span></div><div><b>AI</b><span>Personal feedback</span></div><div><b>A1–C2</b><span>CEFR levels</span></div></div>
+      </div>
+      <div class="floating-card"><span class="float-icon">✦</span><div><b>Keep improving</b><small>Every practice counts.</small></div><span class="float-check">✓</span></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-mobile-brand brand"><span class="brand-mark">L</span> lingua<span>AI</span></div>
+      <div class="auth-box">
+        <button type="button" id="closeAuthBtn" class="auth-close" aria-label="Yopish">✕</button>
+        <span class="eyebrow">WELCOME TO LINGUA AI</span>
+        <h2 id="authTitle">Hisobingizga kiring</h2>
+        <p class="muted" id="authSubtitle">O‘rganishni davom ettirish uchun tizimga kiring.</p>
+        <div class="auth-tabs"><button class="auth-tab active" data-auth="login">Kirish</button><button class="auth-tab" data-auth="register">Ro‘yxatdan o‘tish</button></div>
+        <form id="authForm">
+          <label id="nameField" class="field hidden">Ismingiz<input id="nameInput" autocomplete="name" placeholder="Masalan, Ibrohimjon"></label>
+          <label class="field">Email manzil<input id="emailInput" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+          <label class="field">Parol<input id="passwordInput" type="password" autocomplete="current-password" placeholder="Kamida 8 ta belgi" minlength="8" required></label>
+          <button class="btn btn-primary btn-wide" id="authSubmit" type="submit">Kirish <span>→</span></button>
+        </form>
+        <p class="auth-note">Hisob ma’lumotlaringiz ushbu qurilmadagi loyiha serverida saqlanadi.</p>
+        <p id="authError" class="form-error"></p>
+      </div>
+      <div class="auth-footer">© 2026 Lingua AI · Learn with purpose</div>
+    </div>
+  </section>
+
+  <div id="app" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">L</span> lingua<span>AI</span></a>
+      <div class="side-label">LEARNING SPACE</div>
+      <nav class="nav">
+        <button class="nav-item active" data-page="overview"><span>⌂</span> Overview</button>
+        <button class="nav-item" data-page="reading"><span>▤</span> Reading <i>01</i></button>
+        <button class="nav-item" data-page="listening"><span>♫</span> Listening <i>02</i></button>
+        <button class="nav-item" data-page="writing"><span>✎</span> Writing AI <i class="ai-tag">AI</i></button>
+        <button class="nav-item" data-page="speaking"><span>◉</span> Speaking AI <i class="ai-tag">AI</i></button>
+        <button class="nav-item" data-page="chat"><span>▣</span> Chat <i class="ai-tag">NEW</i></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip"><span>✦</span><b>Daily reminder</b><p>Consistency is the key. Practice a little every day.</p></div>
+        <button class="nav-item" id="logoutBtn"><span>↪</span> Sign in</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Menyuni ochish">☰</button>
+        <div class="breadcrumb">Learning space <span>/</span> <b id="crumb">Overview</b></div>
+        <div class="top-actions"><span class="level-pill"><span></span> CEFR practice</span><div class="avatar" id="avatar">U</div><div class="user-mini"><b id="userName">Student</b><small id="userStatus">Mehmon rejimi</small></div></div>
+      </header>
+      <div class="content">
+        <section class="page active" id="page-overview">
+          <div class="welcome-row"><div><span class="eyebrow">MONDAY MOTIVATION · LEARN AT YOUR PACE</span><h1>Good to see you, <span id="welcomeName">Student</span> <span class="wave">✦</span></h1><p class="muted">Bugun ingliz tilingiz uchun kichik bir qadam tashlang.</p></div><div class="date-chip" id="todayDate"></div></div>
+          <div class="hero-card"><div class="hero-content"><span class="hero-kicker">YOUR PERSONAL LEARNING HUB</span><h2>Make your next<br>English goal happen.</h2><p>Har bir ko‘nikmani mashq qiling, natijangizni kuzating va AI tavsiyalaridan foydalaning.</p><button class="btn btn-white" data-go="reading">Start practicing <span>→</span></button></div><div class="hero-visual"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-letter">A<span>+</span></div><div class="hero-bubble bubble-one">✦ AI coach</div><div class="hero-bubble bubble-two">CEFR · IELTS</div></div></div>
+          <div class="section-heading"><div><h2>Your practice room</h2><p class="muted">To‘rt ko‘nikma. Bitta katta maqsad.</p></div><span class="subtle-label">CHOOSE A SKILL</span></div>
+          <div class="skill-grid">
+            <article class="skill-card reading-card"><div class="skill-top"><span class="skill-icon">▤</span><span class="skill-arrow">↗</span></div><span class="skill-label">READ & UNDERSTAND</span><h3>Reading</h3><p>Matnlarni o‘qing, savollarga javob bering va natijangizni tekshiring.</p><button data-go="reading" class="text-link">Open practice <span>→</span></button></article>
+            <article class="skill-card listening-card"><div class="skill-top"><span class="skill-icon">♫</span><span class="skill-arrow">↗</span></div><span class="skill-label">LISTEN & LEARN</span><h3>Listening</h3><p>Audio matnni tinglang va eshitganlaringizni tushunishni mashq qiling.</p><button data-go="listening" class="text-link">Open practice <span>→</span></button></article>
+            <article class="skill-card writing-card"><div class="skill-top"><span class="skill-icon">✎</span><span class="skill-arrow">↗</span></div><span class="skill-label">WRITE WITH CONFIDENCE</span><h3>Writing AI</h3><p>Matningizni yuboring va AI dan batafsil tahlil oling.</p><button data-go="writing" class="text-link">Open practice <span>→</span></button></article>
+            <article class="skill-card speaking-card"><div class="skill-top"><span class="skill-icon">◉</span><span class="skill-arrow">↗</span></div><span class="skill-label">SPEAK WITH CONFIDENCE</span><h3>Speaking AI</h3><p>Mikrofon orqali gapiring, transkriptni oling va AI tahlil qilsin.</p><button data-go="speaking" class="text-link">Open practice <span>→</span></button></article>
+          </div>
+          <div class="bottom-grid"><div class="panel progress-panel"><div class="panel-head"><div><h3>Your learning progress</h3><p class="muted">Ushbu qurilmadagi mashq natijalari</p></div><span class="progress-icon">↗</span></div><div class="progress-empty" id="progressSummary"><div class="empty-ring">✦</div><b>Your journey starts here</b><p>Reading va Listening testlarini bajaring. Natijalaringiz shu yerda ko‘rinadi.</p></div></div><div class="panel quote-panel"><span class="quote-mark">“</span><h3>Learning a language is not a sprint. It is a journey.</h3><p>One focused session at a time.</p><span class="quote-line"></span><small>LINGUA AI · DAILY NOTE</small></div></div>
+        </section>
+
+        <section class="page" id="page-reading">
+          <div class="page-intro"><span class="eyebrow">SKILL 01 · READ & UNDERSTAND</span><h1>Reading practice</h1><p class="muted">Matnni diqqat bilan o‘qing va savollarga javob bering.</p></div>
+          <div class="practice-layout"><div class="panel passage-panel"><div class="panel-head"><div><span class="subtle-label">PRACTICE PASSAGE · B1</span><h2>The Power of Urban Green Spaces</h2></div><span class="time-chip">⏱ 8–10 min</span></div><div class="passage-text" id="readingPassage"></div></div><div class="panel quiz-panel"><div class="panel-head"><div><span class="subtle-label">CHECK YOUR UNDERSTANDING</span><h2>Comprehension quiz</h2></div><span class="question-count">5 questions</span></div><form id="readingQuiz"><div id="readingQuestions"></div><button class="btn btn-primary btn-wide" type="submit">Check my answers <span>→</span></button></form><div id="readingResult" class="result-box hidden"></div></div></div>
+        </section>
+
+        <section class="page" id="page-listening">
+          <div class="page-intro"><span class="eyebrow">SKILL 02 · LISTEN & LEARN</span><h1>Listening practice</h1><p class="muted">Audio matnni tinglang. Xohlasangiz, bir necha marta qayta tinglashingiz mumkin.</p></div>
+          <div class="panel listening-panel"><div class="audio-art"><div class="audio-circle">♫</div><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="subtle-label">LISTENING EXERCISE · B1</span><h2>A Student's Daily Routine</h2><p>Short conversation · English</p><div class="audio-controls"><button id="playAudio" class="play-btn">▶</button><button id="stopAudio" class="stop-btn">■</button><span id="audioStatus">Tinglashga tayyor</span></div><p class="audio-hint">Audio brauzeringizning English text-to-speech ovozi orqali o‘qiladi.</p></div><div class="listening-quiz"><div class="panel-head"><div><span class="subtle-label">AFTER LISTENING</span><h2>Answer the questions</h2></div><span class="question-count">5 questions</span></div><form id="listeningQuiz"><div id="listeningQuestions"></div><button class="btn btn-primary btn-wide" type="submit">Submit answers <span>→</span></button></form><div id="listeningResult" class="result-box hidden"></div></div></div>
+        </section>
+
+        <section class="page" id="page-writing">
+          <div class="page-intro"><span class="eyebrow">SKILL 03 · WRITE WITH CONFIDENCE</span><h1>Writing <span class="ai-inline">AI POWERED</span></h1><p class="muted">Yozgan matningizni Gemini AI tahlil qiladi va yaxshilash uchun tavsiyalar beradi.</p></div>
+          <div class="ai-layout"><div class="panel editor-panel"><div class="panel-head"><div><span class="subtle-label">YOUR WRITING WORKSPACE</span><h2>Write your answer</h2></div><span class="secure-chip">✦ AI tutor</span></div><label class="field">Task type<select id="writingTask"><option>IELTS Writing Task 2 — Opinion essay</option><option>IELTS Writing Task 1 — Report</option><option>CEFR B1 — Write an email</option><option>CEFR B2 — Discuss both views</option><option>General English writing</option></select></label><label class="field">Your target level<select id="writingLevel"><option>B1</option><option selected>B2</option><option>C1</option><option>IELTS 6.0</option><option>IELTS 7.0+</option></select></label><label class="field">Your answer<textarea id="writingAnswer" rows="12" placeholder="Start writing your essay here..."></textarea></label><div class="editor-footer"><span id="wordCount">0 words</span><button class="btn btn-primary" id="evaluateWriting">Evaluate with AI <span>✦</span></button></div></div><div class="panel tips-panel"><span class="subtle-label">WRITING TIPS</span><h3>Before you submit</h3><ul class="tips-list"><li><span>✓</span> Savolga to‘liq javob bering.</li><li><span>✓</span> Fikrlaringizni paragraflarga ajrating.</li><li><span>✓</span> Turli grammatik tuzilmalardan foydalaning.</li><li><span>✓</span> Misollar bilan fikringizni asoslang.</li></ul><div class="ai-note"><span>✦</span><p>AI natijasi o‘quv maqsadidagi taxminiy baho. Rasmiy IELTS natijasi emas.</p></div></div></div><div id="writingOutput" class="panel ai-output hidden"></div>
+        </section>
+
+        <section class="page" id="page-speaking">
+          <div class="page-intro"><span class="eyebrow">SKILL 04 · SPEAK WITH CONFIDENCE</span><h1>Speaking <span class="ai-inline">AI POWERED</span></h1><p class="muted">Savolga ovozli javob bering. Nutqingiz matnga aylantiriladi va AI tomonidan tahlil qilinadi.</p></div>
+          <div class="speaking-layout"><div class="panel speaking-main"><span class="subtle-label">TODAY'S SPEAKING QUESTION</span><div class="speaking-question"><span class="question-number">01</span><h2 id="speakingPrompt">Describe a skill you would like to learn in the future.</h2><p>Try to speak for 1–2 minutes. Give reasons and examples.</p></div><div class="mic-area"><button id="micButton" class="mic-button"><span>🎙</span></button><b id="micStatus">Microphone is ready</b><small id="micHelp">Boshlash uchun mikrofon tugmasini bosing.</small></div><label class="field transcript-label">Your transcript<textarea id="speakingAnswer" rows="7" placeholder="Speech recognition transcript will appear here. You can also type your answer..."></textarea></label><div class="editor-footer"><button class="btn btn-outline" id="nextPrompt">Next question ↗</button><button class="btn btn-primary" id="evaluateSpeaking">Evaluate with AI <span>✦</span></button></div></div><div class="panel tips-panel"><span class="subtle-label">SPEAKING GUIDE</span><h3>Speak naturally</h3><ul class="tips-list"><li><span>✓</span> Savolga bevosita javob bering.</li><li><span>✓</span> Sabab va misollar keltiring.</li><li><span>✓</span> Fikrlaringizni bog‘lovchi so‘zlardan foydalanib ayting.</li><li><span>✓</span> Ravon va tushunarli gapirishga harakat qiling.</li></ul><div class="ai-note"><span>ⓘ</span><p>Mikrofon funksiyasi Chrome kabi qo‘llab-quvvatlanadigan brauzerlarda ishlaydi. Talaffuzni matnning o‘zidan aniq baholab bo‘lmaydi.</p></div></div></div><div id="speakingOutput" class="panel ai-output hidden"></div>
+        </section>
+
+        <section class="page" id="page-chat">
+          <div class="page-intro"><span class="eyebrow">CONNECT · PRACTISE · SHARE</span><h1>Friends Chat</h1><p class="muted">Do‘stlaringiz bilan shaxsiy yoki guruh suhbatlarini boshlang.</p></div>
+          <div id="chatGate" class="chat-gate panel">
+            <div class="chat-gate-icon">✉</div>
+            <span class="eyebrow">LINGUA AI COMMUNITY</span>
+            <h2>Do‘stlaringiz bilan suhbatlashing</h2>
+            <p class="muted">Shaxsiy chat oching, guruh yarating va do‘stlaringizni taklif qiling. Chatdan foydalanish uchun profilingizga kiring.</p>
+            <button type="button" id="chatSignInBtn" class="btn btn-primary">Profil ochish <span>→</span></button>
+            <small>Chatda yozishish uchun bepul profil oching. Profilingiz keyingi tashriflarda eslab qolinadi.</small>
+          </div>
+          <div class="chat-layout hidden" id="chatLayout">
+            <aside class="panel chat-sidebar">
+              <div class="chat-actions"><button class="btn btn-primary" id="newGroupBtn">＋ Yangi guruh</button></div>
+              <label class="field chat-search">Do‘st qidirish<input id="friendSearch" placeholder="Username yoki ism..." autocomplete="off"></label>
+              <div id="friendResults" class="friend-results"></div>
+              <div class="chat-list-heading">Suhbatlar</div>
+              <div id="chatList" class="chat-list"><p class="muted">Suhbatlar yuklanmoqda...</p></div>
+            </aside>
+            <section class="panel conversation-panel" id="conversationPanel">
+              <div class="chat-empty"><div class="chat-empty-icon">✉</div><h2>Suhbatni tanlang</h2><p>Do‘st qidiring yoki yangi guruh yarating.</p></div>
+              <div id="activeConversation" class="hidden">
+                <div class="conversation-head"><div class="chat-avatar" id="activeAvatar">L</div><div><b id="activeChatName">Chat</b><small id="activeChatMeta">Suhbat</small></div></div>
+                <div id="messageList" class="message-list" aria-live="polite"></div>
+                <form id="messageForm" class="message-form"><input id="messageInput" maxlength="2000" placeholder="Xabar yozing..." autocomplete="off" required><button class="btn btn-primary" type="submit">Yuborish ➤</button></form>
+              </div>
+            </section>
+          </div>
+          <div class="modal-backdrop hidden" id="groupModal"><form class="panel group-modal" id="groupForm"><div class="panel-head"><h2>Yangi guruh yaratish</h2><button type="button" class="modal-close" id="closeGroupModal">✕</button></div><label class="field">Guruh nomi<input id="groupName" maxlength="60" placeholder="Masalan, IELTS Study Group" required></label><label class="field">Do‘stlarni tanlang<input id="groupFriendSearch" placeholder="Do‘st qidirish..."></label><div id="groupFriendResults" class="group-friend-results"></div><p class="muted">Guruhda siz bilan birga 2–20 kishi bo‘lishi mumkin.</p><button class="btn btn-primary btn-wide" type="submit">Guruh yaratish</button></form></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
